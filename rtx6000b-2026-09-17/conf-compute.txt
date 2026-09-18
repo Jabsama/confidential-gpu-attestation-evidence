@@ -1,0 +1,12 @@
+
+==============NVSMI CONF-COMPUTE LOG==============
+
+    CC State                   : ON
+    Multi-GPU Mode             : None
+    CPU CC Capabilities        : INTEL TDX
+    GPU CC Capabilities        : CC Capable
+    CC GPUs Ready State        : Ready
+
+GPU 0: NVIDIA RTX PRO 6000 Blackwell Server Edition (UUID: GPU-9ab167db-eeab-d1bd-d7fd-e9c21f845a58)
+Protected memory size:   99463296 KiB
+Unprotected memory size: 0 KiB

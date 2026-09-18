@@ -1,0 +1,2 @@
+name, driver_version, vbios_version, memory.total [MiB]
+NVIDIA RTX PRO 6000 Blackwell Server Edition, 595.71.05, 98.02.9E.00.01, 97887 MiB

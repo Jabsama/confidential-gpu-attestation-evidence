@@ -1,0 +1,124 @@
+NVSwitch attestation diagnosis, 8x H100 VM (h100-xlarge, host 199.73.48.134), 10 September 2026, second VM wrk-sixplt0aeids
+
+=== lspci -nn | grep -i nvidia ===
+01:00.0 3D controller [0302]: NVIDIA Corporation GH100 [H100 SXM5 80GB] [10de:2330] (rev a1)
+02:00.0 3D controller [0302]: NVIDIA Corporation GH100 [H100 SXM5 80GB] [10de:2330] (rev a1)
+03:00.0 3D controller [0302]: NVIDIA Corporation GH100 [H100 SXM5 80GB] [10de:2330] (rev a1)
+04:00.0 3D controller [0302]: NVIDIA Corporation GH100 [H100 SXM5 80GB] [10de:2330] (rev a1)
+05:00.0 3D controller [0302]: NVIDIA Corporation GH100 [H100 SXM5 80GB] [10de:2330] (rev a1)
+06:00.0 3D controller [0302]: NVIDIA Corporation GH100 [H100 SXM5 80GB] [10de:2330] (rev a1)
+07:00.0 3D controller [0302]: NVIDIA Corporation GH100 [H100 SXM5 80GB] [10de:2330] (rev a1)
+08:00.0 3D controller [0302]: NVIDIA Corporation GH100 [H100 SXM5 80GB] [10de:2330] (rev a1)
+09:00.0 Bridge [0680]: NVIDIA Corporation GH100 [H100 NVSwitch] [10de:22a3] (rev a1)
+0a:00.0 Bridge [0680]: NVIDIA Corporation GH100 [H100 NVSwitch] [10de:22a3] (rev a1)
+0b:00.0 Bridge [0680]: NVIDIA Corporation GH100 [H100 NVSwitch] [10de:22a3] (rev a1)
+0c:00.0 Bridge [0680]: NVIDIA Corporation GH100 [H100 NVSwitch] [10de:22a3] (rev a1)
+
+=== nvidia device nodes ===
+crw-rw-rw- 1 root root 195,   0 Sep 10 21:17 /dev/nvidia0
+crw-rw-rw- 1 root root 195, 255 Sep 10 21:16 /dev/nvidiactl
+crw-rw-rw- 1 root root 195, 254 Sep 10 21:17 /dev/nvidia-modeset
+crw-rw-rw- 1 root root 239,   0 Sep 10 21:17 /dev/nvidia-nvlink
+crw-rw-rw- 1 root root 238,   0 Sep 10 21:17 /dev/nvidia-nvswitch0
+crw-rw-rw- 1 root root 238,   1 Sep 10 21:17 /dev/nvidia-nvswitch1
+crw-rw-rw- 1 root root 238,   2 Sep 10 21:17 /dev/nvidia-nvswitch2
+crw-rw-rw- 1 root root 238,   3 Sep 10 21:17 /dev/nvidia-nvswitch3
+crw-rw-rw- 1 root root 238, 255 Sep 10 21:17 /dev/nvidia-nvswitchctl
+crw-rw-rw- 1 root root 237,   0 Sep 10 21:17 /dev/nvidia-uvm
+crw-rw-rw- 1 root root 237,   1 Sep 10 21:17 /dev/nvidia-uvm-tools
+
+/dev/nvidia-caps:
+total 0
+cr-------- 1 root root 240, 0 Sep 10 21:17 nvidia-cap0
+
+=== nvidia-smi topo -m ===
+	[4mGPU0	GPU1	GPU2	GPU3	GPU4	GPU5	GPU6	GPU7	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV18	NV18	NV18	NV18	NV18	NV18	NV18	0-95	0		N/A
+GPU1	NV18	 X 	NV18	NV18	NV18	NV18	NV18	NV18	0-95	0		N/A
+GPU2	NV18	NV18	 X 	NV18	NV18	NV18	NV18	NV18	0-95	0		N/A
+GPU3	NV18	NV18	NV18	 X 	NV18	NV18	NV18	NV18	0-95	0		N/A
+GPU4	NV18	NV18	NV18	NV18	 X 	NV18	NV18	NV18	0-95	0		N/A
+GPU5	NV18	NV18	NV18	NV18	NV18	 X 	NV18	NV18	0-95	0		N/A
+GPU6	NV18	NV18	NV18	NV18	NV18	NV18	 X 	NV18	0-95	0		N/A
+GPU7	NV18	NV18	NV18	NV18	NV18	NV18	NV18	 X 	0-95	0		N/A
+
+Legend:
+
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+
+=== nvidia-smi nvlink -s (GPU 0) ===
+GPU 0: NVIDIA H100 80GB HBM3 (UUID: GPU-7f11bf9d-9698-30f0-0873-ac805322529a)
+	 Link 0: 26.562 GB/s
+	 Link 1: 26.562 GB/s
+	 Link 2: 26.562 GB/s
+	 Link 3: 26.562 GB/s
+	 Link 4: 26.562 GB/s
+
+=== conf-compute ===
+
+==============NVSMI CONF-COMPUTE LOG==============
+
+    CC State                   : OFF
+    Multi-GPU Mode             : Protected PCIe
+    CPU CC Capabilities        : INTEL TDX
+    GPU CC Capabilities        : CC Capable
+    CC GPUs Ready State        : Not Ready
+
+
+=== fabric manager / nvswitch services ===
+  nvidia-cc-ready.service                                                                   loaded inactive   dead    start NVIDIA GPU Confidential Computing ready state (srs=1)
+  nvidia-fabricmanager.service                                                              loaded active     running       NVIDIA fabric manager service
+  nvidia-persistenced.service                                                               loaded activating start   start NVIDIA Persistence Daemon
+crw-rw-rw- 1 root root 238,   0 Sep 10 21:17 /dev/nvidia-nvswitch0
+crw-rw-rw- 1 root root 238,   1 Sep 10 21:17 /dev/nvidia-nvswitch1
+crw-rw-rw- 1 root root 238,   2 Sep 10 21:17 /dev/nvidia-nvswitch2
+crw-rw-rw- 1 root root 238,   3 Sep 10 21:17 /dev/nvidia-nvswitch3
+crw-rw-rw- 1 root root 238, 255 Sep 10 21:17 /dev/nvidia-nvswitchctl
+
+
+=== READY STATE ===
+    CC State                   : OFF
+    Multi-GPU Mode             : Protected PCIe
+    CC GPUs Ready State        : Ready
+
+=== SDK setup ===
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+venv: /home/ubuntu/att
+nv-attestation-sdk    2.7.3
+nv-local-gpu-verifier 2.7.3
+
+=== switch evidence, ppcie_mode False (non-standalone) ===
+python3: undefined symbol: nscq_session_create
+switch evidence items: []
+
+=== switch evidence, ppcie_mode True (standalone, default) ===
+Attestation failed as switch attestation is not supported in ppcie mode
+
+=== nvswitch verifier module present in the SDK? ===
+nv_switch_verifier -> not importable: ModuleNotFoundError("No module named 'nv_switch_verifier'")
+nv_attestation_sdk.nvswitch -> /home/ubuntu/att/lib/python3.12/site-packages/nv_attestation_sdk/nvswitch/__init__.py
+verifier -> None
+nvswitch submodules: ['attest_nvswitch_local', 'attest_nvswitch_remote']
+
+=== GPU + switch evidence attested against NRAS ===
+Number of GPUs available : 8
+Fetching GPU 0 information from GPU driver.
+Fetching GPU 1 information from GPU driver.
+Fetching GPU 2 information from GPU driver.
+Fetching GPU 3 information from GPU driver.
+Fetching GPU 4 information from GPU driver.
+Fetching GPU 5 information from GPU driver.
+Fetching GPU 6 information from GPU driver.
+Fetching GPU 7 information from GPU driver.
+All GPU Evidences fetched successfully
+gpu evidence items: 8
+python3: undefined symbol: nscq_session_create
+switch evidence items: []
+**** Attestation Successful ****
+**** Attestation Failed ****
+Error in Nvswitch Attestation using NRAS due to: {'status': 'BAD_REQUEST', 'errorCode': 4005, 'message': 'INVALID_EVIDENCE', 'debugMessage': 'Invalid Evidence, please provide valid evidence', 'fieldName': 'evidences', 'timestamp': '2026-09-10 09:20:48'}
+NRAS Response Code: 400
+attest(gpu+switch evidence) -> False
+
+=== DONE ===
