@@ -1,0 +1,48 @@
+595.71.05
+AUCUN paquet nscq installe
+libnvidia-nscq-550 - NVSwitch Configuration and Query library
+libnvidia-nscq-555 - NVSwitch Configuration and Query library
+libnvidia-nscq-560 - NVSwitch Configuration and Query library
+libnvidia-nscq-565 - NVSwitch Configuration and Query library
+libnvidia-nscq-570 - NVSwitch Configuration and Query library
+libnvidia-nscq-575 - NVSwitch Configuration and Query library
+libnvidia-nscq - NVSwitch Configuration and Query library
+libnvidia-nscq-460 - Transitional package for libnvidia-nscq-470
+libnvidia-nscq-515 - Transitional package for libnvidia-nscq-535
+libnvidia-nscq-525 - Transitional package for libnvidia-nscq-535
+libnvidia-nscq-535 - NVSwitch Configuration and Query library
+libnvidia-nscq-470 - Transitional package for libnvidia-nscq-470
+libnvidia-nscq-580 - NVSwitch Configuration and Query library
+libnvidia-nscq-590 - NVSwitch Configuration and Query library
+libnvidia-nscq-595 - NVSwitch Configuration and Query library
+libnvidia-nscq-595:
+  Installed: (none)
+  Candidate: 595.58.03-0ubuntu0.24.04.1
+  Version table:
+     595.58.03-0ubuntu0.24.04.1 500
+        500 http://us.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages
+
+The following packages have unmet dependencies:
+ nvidia-kernel-common : Conflicts: nvidia-kernel-common
+ nvidia-kernel-common-595-server : Conflicts: nvidia-kernel-common
+E: Error, pkgProblemResolver::Resolve generated breaks, this may be caused by held packages.
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-09-18 22:54:30.508 [attestation.cpp:281 attest_device] [info] Attesting Switches
+2026-09-18 22:54:30.509 [switch/evidence.cpp:178 get_evidence] [error] Failed to initialize NSCQ
+2026-09-18 22:54:30.509 [attestation.cpp:333 attest_switches] [error] Failed to collect switch evidence
+2026-09-18 22:54:30.509 [nvat.cpp:668 nvat_attest_device] [error] Error while performing device attestation
+Devices: 
+[no device claims]
+
+NVSwitch attestation failed!
+Ensure libnvidia-nscq is installed and an NVSwitch is available on this node.
+
+Error 600: NSCQ Initialization Failed
+Backtrace:
+  | Error while performing device attestation
+  | Failed to collect switch evidence
+  | Failed to initialize NSCQ
+
+Run with --log-level=debug for more information.
