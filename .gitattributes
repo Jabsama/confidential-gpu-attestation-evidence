@@ -1,0 +1,2 @@
+# Evidence must stay byte-exact: SHA256SUMS cover these files. No line-ending conversion, ever.
+* -text
