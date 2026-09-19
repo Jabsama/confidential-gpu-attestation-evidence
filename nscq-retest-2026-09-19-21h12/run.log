@@ -1,0 +1,80 @@
+595.71.05
+AUCUN paquet nscq installe au depart
+Preparing to unpack /tmp/cuda-keyring.deb ...
+Unpacking cuda-keyring (1.1-1) over (1.1-1) ...
+Setting up cuda-keyring (1.1-1) ...
+Listing...
+libnvidia-nscq/unknown 615.71.09-2ubuntu1 amd64
+libnvidia-nscq/unknown 615.71.09-1ubuntu1 amd64
+libnvidia-nscq/unknown 610.57.04-1ubuntu1 amd64
+libnvidia-nscq/unknown 610.43.02-1ubuntu1 amd64
+libnvidia-nscq/unknown 595.91.07-1ubuntu1 amd64
+libnvidia-nscq/unknown 595.71.05-1ubuntu1 amd64
+libnvidia-nscq/unknown 595.58.03-1ubuntu1 amd64
+libnvidia-nscq/unknown 595.45.04-1ubuntu1 amd64
+libnvidia-nscq/unknown 590.48.01-0ubuntu1 amd64
+libnvidia-nscq/unknown 590.44.01-0ubuntu1 amd64
+libnvidia-nscq/unknown 580.178.04-1ubuntu1 amd64
+version ciblee : 595.71.05-1ubuntu1
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+ii  libnvidia-nscq                        595.71.05-1ubuntu1                      amd64        NVSwitch Configuration and Query library
+lrwxrwxrwx 1 root root      19 Apr 24 11:07 /usr/lib/x86_64-linux-gnu/libnvidia-nscq.so -> libnvidia-nscq.so.2
+lrwxrwxrwx 1 root root      21 Apr 24 11:07 /usr/lib/x86_64-linux-gnu/libnvidia-nscq.so.2 -> libnvidia-nscq.so.2.0
+lrwxrwxrwx 1 root root      27 Apr 24 11:07 /usr/lib/x86_64-linux-gnu/libnvidia-nscq.so.2.0 -> libnvidia-nscq.so.595.71.05
+-rw-r--r-- 1 root root 1586224 Apr 24 05:37 /usr/lib/x86_64-linux-gnu/libnvidia-nscq.so.595.71.05
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+===== JOIGNABILITE DES POINTS D ENTREE NVIDIA =====
+--- ocsp.ndis.nvidia.com ---
+166.117.200.57  ocsp.ndis.nvidia.com
+166.117.113.121 ocsp.ndis.nvidia.com
+HTTP 405 en 0.115602s
+--- rim.attestation.nvidia.com ---
+166.117.155.59  rim.attestation.nvidia.com
+166.117.56.89   rim.attestation.nvidia.com
+HTTP 403 en 0.114607s
+--- nras.attestation.nvidia.com ---
+34.120.45.54    nras.attestation.nvidia.com
+HTTP 200 en 0.188914s
+===== ATTESTATION AVEC LES URL EXPLICITES =====
+2026-09-19 21:11:18.691 [attestation.cpp:281 attest_device] [info] Attesting Switches
+2026-09-19 21:11:34.006 [nv_http.cpp:142 do_request_as_string] [error] Fatal libcurl error code: SSL connect error (35)
+2026-09-19 21:11:34.008 [nv_ocsp.cpp:163 get_ocsp_response] [error] Failed to perform OCSP check with url: https://ocsp.ndis.nvidia.com
+2026-09-19 21:11:34.008 [rim.cpp:265 generate_rim_claims] [error] Failed to generate certificate chain claims for RIM with id NV_SWITCH_BIOS_5612_0002_890_96106D0001
+2026-09-19 21:11:34.009 [attestation.cpp:338 attest_switches] [error] Failed to verify switch evidence
+2026-09-19 21:11:34.009 [nvat.cpp:668 nvat_attest_device] [error] Error while performing device attestation
+Devices: 
+[no device claims]
+
+NVSwitch attestation failed!
+
+Error 002: Internal Error
+Backtrace:
+  | Error while performing device attestation
+  | Failed to verify switch evidence
+  | Failed to generate certificate chain claims for RIM with id NV_SWITCH_BIOS_5612_0002_890_96106D0001
+  | Failed to perform OCSP check with url: https://ocsp.ndis.nvidia.com
+  | Fatal libcurl error code: SSL connect error (35)
+
+Run with --log-level=debug for more information.
+===== ATTESTATION SANS OPTION, POUR COMPARER =====
+
+NVSwitch attestation failed!
+
+Error 002: Internal Error
+Backtrace:
+  | Error while performing device attestation
+  | Failed to verify switch evidence
+  | Failed to validate attestation report certificate chain
+  | Failed to perform OCSP check with url: https://ocsp.ndis.nvidia.com
+  | Fatal libcurl error code: SSL connect error (35)
+
+Run with --log-level=debug for more information.
